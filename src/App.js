@@ -1,15 +1,13 @@
-import './App.css';
-import Navbar from "./MyComponent/navbar"
-import Newss from "./MyComponent/News"
-import Alert from "./MyComponent/alert"
-import Footer from "./MyComponent/footer"
-import Textareas from "./MyComponent/Textareas"
-import About from "./MyComponent/about"
+import "./App.css";
+import Navbar from "./MyComponent/navbar";
+import Newss from "./MyComponent/News";
+import Alert from "./MyComponent/alert";
+import Footer from "./MyComponent/footer";
+import Textareas from "./MyComponent/Textareas";
+import About from "./MyComponent/about";
 
-import React, { useState, Component } from 'react'
+import React, { useState, Component } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-
-
 
 //for nav bar
 // const [mode, setMode] = useState('light');
@@ -38,71 +36,39 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 //   }, 1500);
 // }
 
-
-
 export default class App extends Component {
-
-
   constructor() {
     super();
-    
-    this.state = {
-       newsData : []
-    }
-  }
-  
-  
 
-  async componentDidMount()
-  {
+    this.state = {
+      newsData: [],
+    };
+  }
+
+  async componentDidMount() {
     let temp = await fetch("https://api.coindesk.com/v1/bpi/currentprice.json");
     let parsedData = await temp.json();
-    this.setState({newsData:parsedData.bpi});    
-    console.log(this.state.newsData)
+    this.setState({ newsData: parsedData.bpi });
+    console.log(this.state.newsData);
   }
 
   render() {
     return (
-     
-          <Router>
-            <Navbar/> 
-            <Newss newsData={this.state.newsData}/>
-                <Routes>
-                      <Route exact path="/textarea" element={<Textareas/>} />
-                      <Route exact path="/about" element={<About />} />
-                </Routes>
-            
-            <Footer />
-        </Router>
-      
-    )
+      <Router>
+        <Navbar />
+        <Newss newsData={this.state.newsData} />
+        <Routes>
+          <Route exact path="/textarea" element={<Textareas />} />
+          <Route exact path="/about" element={<About />} />
+        </Routes>
+
+        <Footer />
+      </Router>
+    );
   }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //<News News={News} onDelete={onDelete}/>
-
-
 
 // const onDelete =   (todo)=>{
 //   console.log("i am ondelete of" ,todo);
@@ -110,7 +76,6 @@ export default class App extends Component {
 //     return temp!==todo;
 //   }))
 // }
-
 
 // const [News, setNews] = useState(
 //   [
